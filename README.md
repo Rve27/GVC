@@ -2,7 +2,7 @@
 Cache Cleaner by Gemini AI
  - Magisk & KSU
 
-How to Install:
+How to Use:
  - open terminal emulator then type this
  - ```su -c bash gvc```
 
