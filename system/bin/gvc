@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Opsi pembersihan
+options=(
+  "Application"
+  "System"
+  "ART"
+  "All"
+)
+
+# Memilih opsi
+echo "Select the type of cache you want to clean:"
+for (( i=0; i<${#options[@]}; i++ )); do
+  echo "$((i + 1)) - ${options[$i]}"
+done
+
+read -p "Enter options (1-${#options[@]}): " choice
+
+# Melakukan tindakan berdasarkan pilihan
+case "$choice" in
+  1)
+    # Membersihkan cache aplikasi
+    for app in $(pm list packages -3); do
+      app_cache_path="/data/data/$app/cache"
+      if [ -d "$app_cache_path" ]; then
+        rm -rf "$app_cache_path"
+      fi
+    done
+    echo "App cache cleared!"
+    ;;
+  2)
+    # Membersihkan cache sistem
+    rm -rf /cache/*
+    echo "System cache cleared!"
+    ;;
+  3)
+    # Membersihkan cache ART
+    rm -rf /data/dalvik-cache/*
+    echo "ART cache cleared!"
+    ;;
+  4)
+    # Membersihkan semua cache
+    for app in $(pm list packages -3); do
+      app_cache_path="/data/data/$app/cache"
+      if [ -d "$app_cache_path" ]; then
+        rm -rf "$app_cache_path"
+      fi
+    done
+
+    rm -rf /cache/*
+    rm -rf /data/dalvik-cache/*
+
+    echo "All caches cleared!"
+    ;;
+  *)
+    echo "Invalid choice!"
+    ;;
+esac
