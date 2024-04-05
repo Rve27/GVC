@@ -1,9 +1,9 @@
 # GVC
 Cache Cleaner by Gemini AI
-Notes:
+ Notes:
  - Magisk & KSU
 
-How to Install:
+ How to Install:
  - open terminal emulator then type this
    ```su -c bash gvc```
 
